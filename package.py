@@ -13,10 +13,10 @@ description = \
     """
 
 requires = [
-    "gcc-6",
-    "cmake-3",
-    "ilmbase-2.2.1",
-    "openexr-2.2.1"
+    "gcc-6+",
+    "cmake-3+",
+    "ilmbase-2.2.1<2.4",
+    "openexr-2.2.1<2.4"
 ]
 
 variants = [
@@ -37,9 +37,13 @@ build_system = "cmake"
 with scope("config") as config:
     config.build_thread_count = "logical_cores"
 
-#TODO: Use the SHA1 of the archive instead.
-uuid = "alembic-1.7.11"
+uuid = "alembic-{version}".format(version=str(version))
 
 def commands():
     env.PATH.prepend("{root}/bin")
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
+
+    # Helper environment variables.
+    env.ALEMBIC_BINARY_PATH.set("{root}/bin")
+    env.ALEMBIC_INCLUDE_PATH.set("{root}/include")
+    env.ALEMBIC_LIBRARY_PATH.set("{root}/lib")

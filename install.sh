@@ -16,12 +16,22 @@ echo -e "\n"
 echo -e "[INSTALL][ARGS] BUILD PATH: ${BUILD_PATH}"
 echo -e "[INSTALL][ARGS] ALEMBIC VERSION: ${ALEMBIC_VERSION}"
 
-cd ${BUILD_PATH}
+# We check if the arguments variables we need are correctly set.
+# If not, we abort the process.
+if [[ -z ${BUILD_PATH} || -z ${ALEMBIC_VERSION} ]]; then
+    echo -e "\n"
+    echo -e "[INSTALL][ARGS] One or more of the argument variables are empty. Aborting..."
+    echo -e "\n"
+
+    exit 1
+fi
 
 # We install Alembic.
 echo -e "\n"
 echo -e "[INSTALL] Installing Alembic-${ALEMBIC_VERSION}..."
 echo -e "\n"
+
+cd ${BUILD_PATH}
 
 make -j${REZ_BUILD_THREAD_COUNT} install
 

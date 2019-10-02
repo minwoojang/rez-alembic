@@ -20,19 +20,25 @@ echo -e "[CONFIGURE][ARGS] BUILD PATH: ${BUILD_PATH}"
 echo -e "[CONFIGURE][ARGS] INSTALL PATH: ${INSTALL_PATH}"
 echo -e "[CONFIGURE][ARGS] ALEMBIC VERSION: ${ALEMBIC_VERSION}"
 
+# We check if the arguments variables we need are correctly set.
+# If not, we abort the process.
+if [[ -z ${EXTRACT_PATH} || -z ${BUILD_PATH} || -z ${INSTALL_PATH} || -z ${ALEMBIC_VERSION} ]]; then
+    echo -e "\n"
+    echo -e "[CONFIGURE][ARGS] One or more of the argument variables are empty. Aborting..."
+    echo -e "\n"
+
+    exit 1
+fi
+
 # We run the configuration script of Alembic.
 echo -e "\n"
 echo -e "[CONFIGURE] Running the configuration script from Alembic-${ALEMBIC_VERSION}..."
 echo -e "\n"
 
-if [ -d ${BUILD_PATH} ]; then
-    cd ${BUILD_PATH}
-else
-    mkdir -p ${BUILD_PATH}
-    cd ${BUILD_PATH}
+mkdir -p ${BUILD_PATH}
+cd ${BUILD_PATH}
 
-    cmake ${BUILD_PATH}/.. -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} -DCMAKE_C_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-fPIC -DILMBASE_ROOT=${REZ_ILMBASE_ROOT} -DOPENEXR_ROOT=${REZ_OPENEXR_ROOT}
-fi
+cmake ${BUILD_PATH}/.. -DCMAKE_INSTALL_PREFIX=${INSTALL_PATH} -DCMAKE_C_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-fPIC -DILMBASE_ROOT=${REZ_ILMBASE_ROOT} -DOPENEXR_ROOT=${REZ_OPENEXR_ROOT}
 
 echo -e "\n"
 echo -e "[CONFIGURE] Finished configuring Alembic-${ALEMBIC_VERSION}!"
