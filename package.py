@@ -13,8 +13,8 @@ description = \
     """
 
 requires = [
-    "gcc-6+",
     "cmake-3+",
+    "gcc-6+",
     "ilmbase-2.2.1<2.4",
     "openexr-2.2.1<2.4"
 ]
