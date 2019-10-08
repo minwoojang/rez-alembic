@@ -13,10 +13,12 @@ description = \
     """
 
 requires = [
+    "boost-1.61",
     "cmake-3+",
     "gcc-6+",
     "ilmbase-2.2.1<2.4",
-    "openexr-2.2.1<2.4"
+    "pyilmbase-2.2.1<2.4",
+    "python-2.7+<3"
 ]
 
 variants = [
@@ -42,6 +44,7 @@ uuid = "alembic-{version}".format(version=str(version))
 def commands():
     env.PATH.prepend("{root}/bin")
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
+    env.PYTHONPATH.prepend("{root}/lib/python" + str(env.REZ_PYTHON_MAJOR_VERSION) + "." + str(env.REZ_PYTHON_MINOR_VERSION) + "/site-packages")
 
     # Helper environment variables.
     env.ALEMBIC_BINARY_PATH.set("{root}/bin")
