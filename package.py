@@ -45,6 +45,7 @@ def commands():
     env.PATH.prepend("{root}/bin")
     env.LD_LIBRARY_PATH.prepend("{root}/lib")
     env.PYTHONPATH.prepend("{root}/lib/python" + str(env.REZ_PYTHON_MAJOR_VERSION) + "." + str(env.REZ_PYTHON_MINOR_VERSION) + "/site-packages")
+    env.CMAKE_MODULE_PATH.prepend("{root}/lib/cmake/Alembic")
 
     # Helper environment variables.
     env.ALEMBIC_BINARY_PATH.set("{root}/bin")
