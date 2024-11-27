@@ -1,6 +1,6 @@
 name = "alembic"
 
-version = "1.7.11"
+version = "1.8.5"
 
 authors = [
     "Sony Pictures Imageworks"
@@ -13,16 +13,16 @@ description = \
     """
 
 requires = [
-    "boost-1.61",
-    "cmake-3+",
-    "gcc-6+",
-    "ilmbase-2.2.1<2.4",
-    "pyilmbase-2.2.1<2.4",
-    "python-2.7+<3"
+    "boost",
+    "cmake",
+    "gcc",
+    # "ilmbase",
+    # "pyilmbase-2.2.0",
+    "python"
 ]
 
 variants = [
-    ["platform-linux"]
+    ["platform-linux","arch-x86_64"]
 ]
 
 tools = [
