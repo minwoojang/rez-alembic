@@ -16,8 +16,8 @@ requires = [
     "boost",
     "cmake",
     "gcc",
-    # "ilmbase",
-    # "pyilmbase-2.2.0",
+    "ilmbase",
+    "pyilmbase",
     "python"
 ]
 
